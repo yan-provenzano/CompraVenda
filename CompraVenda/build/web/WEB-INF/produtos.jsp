@@ -24,7 +24,7 @@
           <jsp:include page="navbar.jsp" />
 
 
-        <div class="container">
+        <div class="container" style="min-height:100vh">
             <%--<div class="row">
                 <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtos");
                     for (Produtos a : produtos) {
@@ -52,6 +52,8 @@
                 <% }%>
             </div>
         </div>
+        <footer class="mt-auto">
         <jsp:include page="footer.jsp" />
+        </footer>
     </body>
 </html>

@@ -7,92 +7,72 @@
 <link href="../assets/fonts/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 <header>
-    
-    <!-- A grey horizontal navbar that becomes vertical on small screens -->
-<nav class="navbar navbar-expand-sm navbar-custom">
-  <div class="container">
-     <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
-  </ul>
-
-</nav>
-    <%-- <% Usuario user = (Usuario) request.getSession().getAttribute("user");
+    <% Usuario user = (Usuario) request.getSession().getAttribute("user");
         if (user == null) { %>
-        <%-- <div id="logo">
-
-        <img src="../assets/img/logo.png" alt="">
-    </div> --%>
-
-    <%-- <nav class="navbar navbar-expand-lg navbar-black bg-black static-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">
-          <img src="../assets/img/logo.png" alt=""/>
-        </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-        <% }%>--%>
-
-        <%-- <% } else {%>
-        <div id="logo">
-
-            <img src="../../assets/img/logo.png" alt="">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../assets/img/logo.png" alt=""/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Entrar</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
 
-        <div id="btn-menu">
-            <div class="barra"></div>                
-            <div class="barra"></div>                
-            <div class="barra"></div>
+    <% } else {%>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../assets/img/logo.png" alt=""/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <%  TipoUsuario tipo = user.getTipoUsuario();
+                        if (tipo.equals(TipoUsuario.ADMIN)) {%>            
+                    <%} else if (tipo.equals(TipoUsuario.VENDEDOR)) { %>
+                    <li class="nav-item dropdown ml-auto justify-content-end">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Clientes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/lista_cliente">Lista de Clientes</a>
+                            <a class="dropdown-item" href="/cadastro_cliente">Cadastrar Cliente</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown ml-auto justify-content-end">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Vendas
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/lista_vendas">Lista de Vendas</a>
+                            <a class="dropdown-item" href="/cadastro_vendas">Cadastrar Venda</a>
+                        </div>
+                    </li>
+                    <%} else if (tipo.equals(TipoUsuario.COMPRADOR)) { %>            
+                    <%} %>
+                    <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-        <nav id="menu">
-            <ul>
-                <li><a href="../produtos">Produtos</a></li>
-                </li>
-                <%  TipoUsuario tipo = user.getTipoUsuario();
-                if (tipo.equals(TipoUsuario.ADMIN)) {%>            
-                <%} else if (tipo.equals(TipoUsuario.VENDEDOR)) { %>
-                <li><a href="/lista_cliente">Clientes</a></li>
-                <li><a href="/cadastro_cliente">Cadastrar Cliente</a></li>
-                <li><a href="/cadastro_vendas">Cadastrar Venda</a></li>
-                <li><a href="/lista_vendas">Vendas</a></li>
-
-                <%} else if (tipo.equals(TipoUsuario.COMPRADOR)) { %>            
-                <%} %>
-                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-
-            </ul>
-        </nav>
-        <% }%> --%>
+    </nav>
+    <% }%>
 </header>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
