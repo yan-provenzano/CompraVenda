@@ -20,20 +20,20 @@ public class CadastroFornecedorController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Fornecedores cliente = new Fornecedores();
+        Fornecedores fornecedor = new Fornecedores();
         FornecedoresDAO dao = new FornecedoresDAO();
 
-        cliente.setRazao_Social(req.getParameter("razao_social"));
-        cliente.setCnpj(req.getParameter("cnpj"));
-        cliente.setEndereco(req.getParameter("endereco"));
-        cliente.setBairro(req.getParameter("bairro"));
-        cliente.setCidade(req.getParameter("cidade"));
-        cliente.setUf(req.getParameter("uf"));
-        cliente.setCep(req.getParameter("cep"));
-        cliente.setTelefone(req.getParameter("telefone"));
-        cliente.setEmail(req.getParameter("email"));
+        fornecedor.setRazao_Social(req.getParameter("razao_social"));
+        fornecedor.setCnpj(req.getParameter("cnpj"));
+        fornecedor.setEndereco(req.getParameter("endereco"));
+        fornecedor.setBairro(req.getParameter("bairro"));
+        fornecedor.setCidade(req.getParameter("cidade"));
+        fornecedor.setUf(req.getParameter("uf"));
+        fornecedor.setCep(req.getParameter("cep"));
+        fornecedor.setTelefone(req.getParameter("telefone"));
+        fornecedor.setEmail(req.getParameter("email"));
 
-        dao.saveOrUpdate(cliente);
+        dao.saveOrUpdate(fornecedor);
         req.getRequestDispatcher("/WEB-INF/cadastro_fornecedor.jsp").forward(req, resp);
     }
 

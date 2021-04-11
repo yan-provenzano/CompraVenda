@@ -64,6 +64,12 @@
                     <%} else if (tipo.equals(TipoUsuario.COMPRADOR)) { %>            
                     <%} %>
                     <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/lista_categorias">Categorias</a>
+                    </li>
+                    <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/lista_produtos">Produtos</a>
+                    </li>
+                    <li class="nav-item ml-auto justify-content-end">
                         <a class="nav-link" href="/lista_fornecedores">Fornecedores</a>
                     </li>
                     <li class="nav-item ml-auto justify-content-end">

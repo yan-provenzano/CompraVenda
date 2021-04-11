@@ -20,7 +20,7 @@
             <div class="col d-flex justify-content-center"><div class="card" style="display: inline-block;">
 
                     <div class="container">
-                        <form class="needs-validation"  id="form-register" method="POST" action="/cadastro_cliente">
+                        <form class="needs-validation"  id="form-register" method="POST" action="/cadastro_fornecedor">
                             <div class="text-center"><h2>Cadastro de Fornecedor</h2></div>
                             <!--Nome-->
                             <div class="form-group">

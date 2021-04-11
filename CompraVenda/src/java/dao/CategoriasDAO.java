@@ -14,7 +14,7 @@ import java.util.Optional;
 public class CategoriasDAO<T extends Categorias> extends DAO<T> {
 
     public CategoriasDAO() {
-        super("fornecedores");
+        super("categorias");
     }
 
     @Override
