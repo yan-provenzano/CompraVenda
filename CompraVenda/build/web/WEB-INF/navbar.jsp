@@ -63,7 +63,7 @@
                     </li>
                     <%} else if (tipo.equals(TipoUsuario.COMPRADOR)) { %> 
                     <li class="nav-item ml-auto justify-content-end">
-                        <a class="nav-link" href="/cadastro_compras">Compras</a>
+                        <a class="nav-link" href="/lista_compras">Compras</a>
                     </li>
                     <li class="nav-item ml-auto justify-content-end">
                         <a class="nav-link" href="/lista_categorias">Categorias</a>

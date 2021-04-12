@@ -46,26 +46,27 @@
                             <th scope="col">Cod. Vendedor</th>
                         </tr>
                     </thead>
-                    <% List<Vendas> vendas = (List<Vendas>) request.getAttribute("vendas");
-                        for (Vendas a : vendas) {
-                    %>
-                    <tr>
-                        <td><%=a.getId()%></td>
-                        <td><%=a.getQuantidade_Venda()%></td>
-                        <td><%=a.getDate()%></td>
-                        <td><%=a.getValor_Venda()%></td>
-                        <td><%=a.getId_Cliente()%></td>
-                        <td><%=a.getId_Produto()%></td>
-                        <td><%=a.getId_Vendedor()%></td>    
-                        <td><div class="btn-group"><a href="/vendedor/editar_venda?id=<%=a.getId()%>" class="btn btn-primary">Editar</button><a href="/vendedor/excluir_venda?id=<%=a.getId()%>" class="btn btn-danger">Excluir</button></div></td>  
-                                        </tr>
-                                        <% }%>
-                                        </tbody>
-                                        </table>
-                                        </div>
-                                        </div>
-                                        <footer class="mt-auto">
-                                            <jsp:include page="footer.jsp" />
-                                        </footer>
-                                        </body>
-                                        </html>
+                    <tbody>
+                        <% List<Vendas> vendas = (List<Vendas>) request.getAttribute("vendas");
+                            for (Vendas a : vendas) {
+                        %>
+                        <tr>
+                            <td><%=a.getId()%></td>
+                            <td><%=a.getQuantidade_Venda()%></td>
+                            <td><%=a.getDate()%></td>
+                            <td><%=a.getValor_Venda()%></td>
+                            <td><%=a.getId_Cliente()%></td>
+                            <td><%=a.getId_Produto()%></td>
+                            <td><%=a.getId_Vendedor()%></td>    
+                            <td><div class="btn-group"><a href="/vendedor/editar_venda?id=<%=a.getId()%>" class="btn btn-primary">Editar</button><a href="/vendedor/excluir_venda?id=<%=a.getId()%>" class="btn btn-danger">Excluir</button></div></td>  
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <footer class="mt-auto">
+        <jsp:include page="footer.jsp" />
+    </footer>
+    </body>
+    </html>

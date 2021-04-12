@@ -1,0 +1,79 @@
+package controller.comprador;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+import controller.comprador.ComprasController;
+import dao.ComprasDAO;
+import enums.TipoUsuario;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Usuario;
+import model.Compras;
+
+/**
+ *
+ * @author Yan
+ */
+@WebServlet("/comprador/editar_compra")
+public class EditarCompraController extends HttpServlet {
+
+    ComprasDAO dao = new ComprasDAO();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String param = req.getParameter("id");
+
+        if (param != null) {
+            Long id = Long.valueOf(param);
+            dao.listById(id).ifPresent(i -> {
+                req.setAttribute("compras", i);
+            });
+        }
+
+        req.getRequestDispatcher("/WEB-INF/comprador/editar_compra.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        ComprasDAO comprasDAO = new ComprasDAO();
+        Usuario user = (Usuario) req.getSession().getAttribute("user");
+
+        if (req.getParameter("id") != null) {
+
+            Compras v = new Compras();
+            v.setId(Long.valueOf(req.getParameter("id")));
+            v.setQuantidade_Compra(Integer.valueOf(req.getParameter("quantidade_compra")));
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date data = (Date) formatter.parse(req.getParameter("data_compra"));
+                v.setDate(data);
+            } catch (ParseException ex) {
+                Logger.getLogger(ComprasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            v.setValor_Compra(Integer.valueOf(req.getParameter("valor_compra")));
+            v.setId_Fornecedor(Integer.valueOf(req.getParameter("id_fornecedor")));
+            v.setId_Produto(Integer.valueOf(req.getParameter("id_produto")));
+            v.setId_Comprador(Integer.valueOf(req.getParameter("id_comprador")));
+            comprasDAO.saveOrUpdate(v);
+        }
+
+        if (user.getTipoUsuario().equals(TipoUsuario.COMPRADOR)) {
+            resp.sendRedirect("/lista_compras");
+        }
+    }
+}
