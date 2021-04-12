@@ -84,6 +84,7 @@ public class VendasController extends HttpServlet {
         vendas.setId_Produto(Integer.valueOf(req.getParameter("id_produto")));
         vendas.setId_Vendedor(Integer.valueOf(req.getParameter("id_vendedor")));
         dao.saveOrUpdate(vendas);
+//        if(dao.saveOrUpdate(vendas) == false){} PODE USAR PRA APRESENTAR A TELA DE ERRO
         req.setAttribute("vendedores", vendedores);
         req.setAttribute("listAll", cliente);
         req.setAttribute("produtos", produtos);

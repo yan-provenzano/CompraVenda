@@ -10,6 +10,7 @@ import model.Vendas;
 import org.apache.commons.dbutils.DbUtils;
 
 import dao.ProdutosDAO;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -26,9 +27,9 @@ import model.Produtos;
  *
  * @author Yan
  */
-public class VendasDAO <T extends Vendas> extends DAO<T>{
-    
-     public VendasDAO() {
+public class VendasDAO<T extends Vendas> extends DAO<T> {
+
+    public VendasDAO() {
         super("vendas");
     }
 
@@ -38,6 +39,10 @@ public class VendasDAO <T extends Vendas> extends DAO<T>{
         Connection conn = DatabaseConnection.getConn();
         PreparedStatement ps = null;
 
+        ProdutosDAO dao = new ProdutosDAO();
+        Produtos produto = new Produtos();
+        produto = dao.findByProdutoId(entity.getId_Produto());
+
         if (entity.getId() == null) {
             query = "INSERT INTO " + tableName + " (quantidade_venda, data_venda, valor_venda, id_cliente, id_produto, id_vendedor) VALUES (?,?,?,?,?,?)";
         } else {
@@ -45,28 +50,28 @@ public class VendasDAO <T extends Vendas> extends DAO<T>{
         }
 
         try {
-            ps = conn.prepareStatement(query);
-            ps.setInt(1, entity.getQuantidade_Venda());
-            ps.setDate(2, new java.sql.Date(entity.getDate().getTime()));
-            ps.setDouble(3, entity.getValor_Venda());
-            ps.setInt(4, entity.getId_Cliente());
-            ps.setInt(5, entity.getId_Produto());
-            ps.setInt(6, entity.getId_Vendedor());
-            if (entity.getId() != null) {
-                ps.setLong(7, entity.getId());
-                ps.executeUpdate();
-            } else {
-                ps.execute();
-            }
-            
-            ProdutosDAO dao = new ProdutosDAO();
-            Produtos produto = new Produtos();
-            
-            produto = dao.findByProdutoId(entity.getId_Produto());
-            
-            produto.setQuantidade_Disponivel(produto.getQuantidade_Disponivel() - entity.getQuantidade_Venda());
-            dao.saveOrUpdate(produto);
+            if (entity.getQuantidade_Venda() < produto.getQuantidade_Disponivel()) {
+                produto.setQuantidade_Disponivel(produto.getQuantidade_Disponivel() - entity.getQuantidade_Venda());
+                dao.saveOrUpdate(produto);
+                ps = conn.prepareStatement(query);
 
+                ps.setInt(1, entity.getQuantidade_Venda());
+                ps.setDate(2, new java.sql.Date(entity.getDate().getTime()));
+                ps.setDouble(3, entity.getValor_Venda());
+                ps.setInt(4, entity.getId_Cliente());
+                ps.setInt(5, entity.getId_Produto());
+                ps.setInt(6, entity.getId_Vendedor());
+                if (entity.getId() != null) {
+                    ps.setLong(7, entity.getId());
+                    ps.executeUpdate();
+                } else {
+                    ps.execute();
+                }
+            } else {
+                out.println("Não se pode vender mais de um produto do que o disponível em estoque! ");
+                return false;
+
+            }
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -181,5 +186,5 @@ public class VendasDAO <T extends Vendas> extends DAO<T>{
     public List<T> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
