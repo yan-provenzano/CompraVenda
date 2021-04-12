@@ -61,8 +61,10 @@
                             <a class="dropdown-item" href="/cadastro_vendas">Cadastrar Venda</a>
                         </div>
                     </li>
-                    <%} else if (tipo.equals(TipoUsuario.COMPRADOR)) { %>            
-                    <%} %>
+                    <%} else if (tipo.equals(TipoUsuario.COMPRADOR)) { %> 
+                    <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/cadastro_compras">Compras</a>
+                    </li>
                     <li class="nav-item ml-auto justify-content-end">
                         <a class="nav-link" href="/lista_categorias">Categorias</a>
                     </li>
@@ -72,6 +74,8 @@
                     <li class="nav-item ml-auto justify-content-end">
                         <a class="nav-link" href="/lista_fornecedores">Fornecedores</a>
                     </li>
+                    <%} %>
+                    
                     <li class="nav-item ml-auto justify-content-end">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>

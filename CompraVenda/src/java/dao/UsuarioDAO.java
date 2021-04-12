@@ -183,5 +183,39 @@ public class UsuarioDAO extends LoginDAO<Usuario> {
         return vendedores;
      
      }
+     
+     public List<Usuario> findAllCompradores() {
+      String query = "SELECT * FROM " + tableName + " WHERE tipo = 2";
+        Connection conn = DatabaseConnection.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Usuario> compradores = new ArrayList<>();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            Usuario entity;
+
+            while (rs.next()) {
+                entity = new Usuario();
+                entity.setId(rs.getLong("id"));
+                entity.setNome(rs.getString("nome"));
+                entity.setSenha(rs.getString("senha"));
+                entity.setCpf(rs.getString("cpf"));
+                entity.setTipo(rs.getString("tipo"));
+
+                compradores.add(entity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+
+        return compradores;
+     
+     }
 
 }
