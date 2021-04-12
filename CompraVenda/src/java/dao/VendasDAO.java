@@ -9,6 +9,7 @@ import dao.connection.DatabaseConnection;
 import model.Vendas;
 import org.apache.commons.dbutils.DbUtils;
 
+import dao.ProdutosDAO;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import model.Cliente;
+import model.Produtos;
 
 /**
  *
@@ -56,6 +58,14 @@ public class VendasDAO <T extends Vendas> extends DAO<T>{
             } else {
                 ps.execute();
             }
+            
+            ProdutosDAO dao = new ProdutosDAO();
+            Produtos produto = new Produtos();
+            
+            produto = dao.findByProdutoId(entity.getId_Produto());
+            
+            produto.setQuantidade_Disponivel(produto.getQuantidade_Disponivel() - entity.getQuantidade_Venda());
+            dao.saveOrUpdate(produto);
 
             return true;
         } catch (SQLException e) {

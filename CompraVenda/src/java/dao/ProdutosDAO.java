@@ -39,7 +39,7 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
             ps.setInt(7, entity.getId_Categoria());
 
             if (entity.getId() != null) {
-                ps.setLong(7, entity.getId());
+                ps.setLong(8, entity.getId());
                 ps.executeUpdate();
             } else {
                 ps.execute();
@@ -68,7 +68,6 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             Produtos entity;
-            ProdutosDAO produtosDAO = new ProdutosDAO();
 
             while (rs.next()) {
                 entity = new Produtos();
@@ -92,6 +91,43 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
         }
 
         return list;
+    }
+    
+    public Produtos findByProdutoId(Integer id) {
+        String query = "SELECT * FROM " + tableName + " WHERE id = ?";
+        Connection conn = DatabaseConnection.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Produtos entity = new Produtos();
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {               
+                entity.setId(rs.getLong("id"));
+                entity.setNome_Produto(rs.getString("nome_produto"));
+                entity.setDescricao(rs.getString("descricao"));
+                entity.setPreco_Compra(rs.getDouble("preco_compra"));
+                entity.setPreco_Venda(rs.getDouble("preco_venda"));
+                entity.setQuantidade_Disponivel(rs.getInt("quantidade_disponível"));
+                entity.setLiberado_Venda(rs.getString("liberado_venda"));
+                entity.setId_Categoria(rs.getInt("id_categoria"));
+
+                return entity;
+            } else {
+                return entity;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return entity;
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
     }
 
     @Override

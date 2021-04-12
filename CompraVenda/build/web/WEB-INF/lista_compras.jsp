@@ -34,7 +34,7 @@
                             <th scope="col">Valor</th>
                             <th scope="col">Cod. Cliente</th>
                             <th scope="col">Cod. Produto</th>
-                            <th scope="col">Cod. Vendedor</th>
+                            <th scope="col">Cod. Comprador</th>
                         </tr>
                     </thead>
                     <tbody>
