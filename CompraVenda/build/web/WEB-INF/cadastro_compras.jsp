@@ -37,7 +37,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="firstName" class="col control-label">Quantidade:</label>
-                                        <input type="number" required="required"    name="quantidade_compra" placeholder="Quantidade de Produtos" class="form-control" autofocus>
+                                        <input type="number" required="required"  min="1"  name="quantidade_compra" placeholder="Quantidade de Produtos" class="form-control" autofocus>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="saleDate">Data de Compra:</label>

@@ -18,14 +18,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import model.Produtos;
 
 /**
  *
  * @author Isaac
  */
-public class ComprasDAO <T extends Compras> extends DAO<T>{
-    
-     public ComprasDAO() {
+public class ComprasDAO<T extends Compras> extends DAO<T> {
+
+    public ComprasDAO() {
         super("compras");
     }
 
@@ -34,6 +35,15 @@ public class ComprasDAO <T extends Compras> extends DAO<T>{
         String query;
         Connection conn = DatabaseConnection.getConn();
         PreparedStatement ps = null;
+
+        ProdutosDAO dao = new ProdutosDAO();
+        Produtos produto = new Produtos();
+        produto = dao.findByProdutoId(entity.getId_Produto());
+
+        produto.setQuantidade_Disponivel(produto.getQuantidade_Disponivel() + entity.getQuantidade_Compra());
+        produto.setPreco_Compra(Double.valueOf(entity.getValor_Compra() / entity.getQuantidade_Compra()));
+
+        dao.saveOrUpdate(produto);
 
         if (entity.getId() == null) {
             query = "INSERT INTO " + tableName + " (quantidade_compra, data_compra, valor_compra, id_fornecedor, id_produto, id_comprador) VALUES (?,?,?,?,?,?)";
@@ -170,5 +180,5 @@ public class ComprasDAO <T extends Compras> extends DAO<T>{
     public List<T> findAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

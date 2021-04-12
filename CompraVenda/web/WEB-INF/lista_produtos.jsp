@@ -28,12 +28,12 @@
                 <table class="table table-striped table-responsive">
                     <thead>
                         <tr>
-                             <th scope="col">Produto</th>
-                             <th scope="col">Descricao</th>
-                             <th scope="col">Preço Compra</th>
-                             <th scope="col">Preço Venda</th>
-                             <th scope="col">Quantidade</th>
-                             <th scope="col">Liberado pra venda</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Preço Compra</th>
+                            <th scope="col">Preço Venda</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Liberado pra venda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,8 +46,12 @@
                             <td>R$<%=a.getPreco_Compra()%></td>
                             <td>R$<%=a.getPreco_Venda()%></td>
                             <td><%=a.getQuantidade_Disponivel()%></td>
-                            <td><%=a.getLiberado_Venda()%></td>
-                            
+                            <td><input type="checkbox" name="stable" disabled <%
+                                if ("S".equals(a.getLiberado_Venda())) {
+                                    out.print("checked=\"checked\"");
+                                } %>/>
+                            </td>
+
                         </tr>
                         <% }%>
                     </tbody>

@@ -24,26 +24,30 @@
 
 
         <div class="container" style="min-height:100vh">
-            <div class="row">
-                <table class="table table-striped table-responsive">
-                    <thead>
-                        <tr>
-                             <th scope="col">Categoria</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% List<Categorias> categorias = (List<Categorias>) request.getAttribute("lista_categorias");
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Categoria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% List<Categorias> categorias = (List<Categorias>) request.getAttribute("lista_categorias"); 
                             for (Categorias a : categorias) {
-                        %>
-                        <tr>
-                            <td><%=a.getNome_Categoria()%></td>
-                        </tr>
-                        <% }%>
-                    </tbody>
-                </table>
+                            %>
+                            <tr>
+                                <td><%=a.getId()%></td>
+                                <td><%=a.getNome_Categoria()%></td>
+                            </tr>
+                            <% }%>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="row">
-                <a class="btn btn-primary" href="/cadastro_categoria" role="button">Cadastrar nova categoria</a>
+            <div class="row justify-content-center">
+                <a class="btn btn-dark col-auto" href="/cadastro_categoria" role="button">Cadastrar nova categoria</a>
             </div>
         </div>
         <footer class="mt-auto">

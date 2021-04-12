@@ -50,7 +50,7 @@ public class VendasDAO<T extends Vendas> extends DAO<T> {
         }
 
         try {
-            if (entity.getQuantidade_Venda() < produto.getQuantidade_Disponivel()) {
+            if (entity.getQuantidade_Venda() <= produto.getQuantidade_Disponivel()) {
                 produto.setQuantidade_Disponivel(produto.getQuantidade_Disponivel() - entity.getQuantidade_Venda());
                 dao.saveOrUpdate(produto);
                 ps = conn.prepareStatement(query);

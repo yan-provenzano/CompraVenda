@@ -58,6 +58,42 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
 
 
     public List<Produtos> listAll() {
+        String query = "SELECT * FROM " + tableName;
+        Connection conn = DatabaseConnection.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Produtos> list = new ArrayList<>();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            Produtos entity;
+
+            while (rs.next()) {
+                entity = new Produtos();
+
+                entity.setId(rs.getLong("id"));
+                entity.setNome_Produto(rs.getString("nome_produto"));
+                entity.setDescricao(rs.getString("descricao"));
+                entity.setPreco_Compra(rs.getDouble("preco_compra"));
+                entity.setPreco_Venda(rs.getDouble("preco_venda"));
+                entity.setQuantidade_Disponivel(rs.getInt("quantidade_disponível"));
+                entity.setLiberado_Venda(rs.getString("liberado_venda"));
+                entity.setId_Categoria(rs.getInt("id_categoria"));
+                list.add(entity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+
+        return list;
+    }
+    
+    public List<Produtos> listAllDisponiveis() {
         String query = "SELECT * FROM " + tableName + " WHERE quantidade_disponível > 0 AND liberado_venda = 'S'";
         Connection conn = DatabaseConnection.getConn();
         PreparedStatement ps = null;

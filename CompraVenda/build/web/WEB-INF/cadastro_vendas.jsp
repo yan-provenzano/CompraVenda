@@ -7,7 +7,7 @@
 <%@page import="model.Produtos"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Cliente"%>
-<%@page import="dao.ClienteDAO"%>
+<%@page import="dao.ProdutosDAO"%>
 <%@page import="dao.ClienteDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

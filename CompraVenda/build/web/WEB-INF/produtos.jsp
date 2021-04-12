@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="d-flex justify-content-center container mt-5">
                     <div class="card-deck">
-                        <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtos");
+                        <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtosDisponiveis");
                             for (Produtos a : produtos) {
                         %>
                         <div class="col-sm-12 col-md-6 col-lg-4 d-flex align-self-stretch">

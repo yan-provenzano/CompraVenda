@@ -57,7 +57,7 @@
             </div>
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <a class="btn btn-primary" href="/cadastro_compras" role="button">Cadastrar nova compra</a>
+                    <a class="btn btn-dark" href="/cadastro_compras" role="button">Cadastrar nova compra</a>
                 </div>                
             </div>
 </div>

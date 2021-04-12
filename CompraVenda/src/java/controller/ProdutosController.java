@@ -30,11 +30,15 @@ public class ProdutosController extends HttpServlet {
         List<Produtos> produtos;
         produtos = dao.listAll();
 
+        ProdutosDAO produtosDao = new ProdutosDAO();
+        List<Produtos> produtosDisponiveis;
+        produtosDisponiveis = produtosDao.listAllDisponiveis();
 //        for (Produtos a : produtos) {
 //            a.setComentarios(comentarioDAO.findByArtigoId(post.getId()));
 //        }
 
         req.setAttribute("produtos", produtos);
+        req.setAttribute("produtosDisponiveis", produtosDisponiveis);
         req.getRequestDispatcher("/WEB-INF/produtos.jsp").forward(req, resp);
     }
 

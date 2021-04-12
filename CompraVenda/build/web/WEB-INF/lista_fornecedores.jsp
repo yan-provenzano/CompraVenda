@@ -59,7 +59,7 @@
                 </table>
             </div>
             <div class="row">
-                <a class="btn btn-primary" href="/cadastro_fornecedor" role="button">Cadastrar novo fornecedor</a>
+                <a class="btn btn-dark" href="/cadastro_fornecedor" role="button">Cadastrar novo fornecedor</a>
             </div>
         </div>
         <footer class="mt-auto">

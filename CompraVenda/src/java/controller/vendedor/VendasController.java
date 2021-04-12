@@ -42,7 +42,7 @@ public class VendasController extends HttpServlet {
         
         ProdutosDAO produtosDao = new ProdutosDAO();
         List<Produtos> produtos;
-        produtos = produtosDao.listAll();
+        produtos = produtosDao.listAllDisponiveis();
         
         UsuarioDAO usuarioDao = new UsuarioDAO();
         List<Usuario> vendedores;
@@ -65,7 +65,7 @@ public class VendasController extends HttpServlet {
         
         ProdutosDAO produtosDao = new ProdutosDAO();
         List<Produtos> produtos;
-        produtos = produtosDao.listAll();
+        produtos = produtosDao.listAllDisponiveis();
         
         UsuarioDAO usuarioDao = new UsuarioDAO();
         List<Usuario> vendedores;
