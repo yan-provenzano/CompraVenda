@@ -28,25 +28,22 @@
 
         <div class="container">
             <br>
-            <%-- <div class="row">
-                 <% List<Cliente> clientes = (List<Cliente>) request.getAttribute("listAll");
-                     for (Cliente a : clientes) {
-                 %>
-
-                <div class="card" style="width: 18rem; margin:20px; word-break: break-all; ">
-                    <div class="card-body" style="border: solid 1px black">
-                        <h1 class="card-title" style="border-bottom: solid 1px black; padding:20px; color:black"><%=a.getNome()%></h1>
-                        <p class="card-text" style="border-bottom: solid 1px black; padding: 5px; margin-top: -5px;"><b>Categoria:</b> <%=a.getId()%></p>
-                    </div>
-
-                </div>
-                <% }%>
-            </div>--%>
             <div class="col d-flex justify-content-center"><div class="card" style="display: inline-block;">
 
                     <div class="container">
                         <form class="needs-validation"  id="form-register" method="POST" action="/cadastro_vendas">
                             <div class="text-center"><h2>Cadastro de Vendas</h2></div>
+                            <div class="form-group">
+                                <label for="idProduto">Produto:</label>
+                                <select name="id_produto" required="required" class="form-control">
+                                    <option selected>Escolher...</option>
+                                    <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtos");
+                                        for (Produtos a : produtos) {
+                                    %>
+                                    <option value="<%=a.getId()%>"><%=a.getNome_Produto()%></option>
+                                    <% }%>
+                                </select>
+                            </div>
                             <!--Nome-->
                             <div class="form-group">
                                 <div class="form-row">
@@ -76,17 +73,6 @@
                                     <option value="<%=a.getId()%>"><%=a.getNome()%></option>
                                     <% }%>
                                 </select> 
-                            </div>
-                            <div class="form-group">
-                                <label for="idProduto">Produto:</label>
-                                <select name="id_produto" required="required" class="form-control">
-                                    <option selected>Escolher...</option>
-                                    <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtos");
-                                        for (Produtos a : produtos) {
-                                    %>
-                                    <option value="<%=a.getId()%>"><%=a.getNome_Produto()%></option>
-                                    <% }%>
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="idVendedor">Vendedor:</label>
