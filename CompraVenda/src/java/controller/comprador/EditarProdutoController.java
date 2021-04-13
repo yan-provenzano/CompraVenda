@@ -53,7 +53,7 @@ public class EditarProdutoController extends HttpServlet {
         if (req.getParameter("id") != null) {
             Produtos p = new Produtos();
             
-            //p = produtoDAO.findByProdutoId(Integer.valueOf(req.getParameter("id")));
+        p = produtoDAO.findByProdutoId(Integer.valueOf(req.getParameter("id")));
             
         p.setId(Long.valueOf(req.getParameter("id")));
         p.setLiberado_Venda(req.getParameter("liberado_venda"));
