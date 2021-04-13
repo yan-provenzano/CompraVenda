@@ -39,6 +39,14 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
             ps.setInt(7, entity.getId_Categoria());
 
             if (entity.getId() != null) {
+                //Edita pra disponivel pra venda
+                Produtos p = findByProdutoId(entity.getId().intValue());
+                ps.setString(1, p.getNome_Produto());
+                ps.setString(2, p.getDescricao());
+                ps.setDouble(3, p.getPreco_Compra());
+                ps.setDouble(4, p.getPreco_Venda());
+                ps.setInt(5, p.getQuantidade_Disponivel());
+                ps.setInt(7, p.getId_Categoria());                
                 ps.setLong(8, entity.getId());
                 ps.executeUpdate();
             } else {
@@ -159,6 +167,44 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
             e.printStackTrace();
 
             return entity;
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+    }
+    
+    public Optional<Produtos> listById(Long id) {
+        String query = "SELECT * FROM " + tableName + " WHERE id = ?";
+        Connection conn = DatabaseConnection.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Produtos entity = new Produtos();
+
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                entity.setId(rs.getLong("id"));
+                entity.setNome_Produto(rs.getString("nome_produto"));
+                entity.setDescricao(rs.getString("descricao"));
+                entity.setPreco_Compra(rs.getDouble("preco_compra"));
+                entity.setPreco_Venda(rs.getDouble("preco_venda"));
+                entity.setQuantidade_Disponivel(rs.getInt("quantidade_disponível"));
+                entity.setLiberado_Venda(rs.getString("liberado_venda"));
+                entity.setId_Categoria(rs.getInt("id_categoria"));
+
+                return Optional.of(entity);
+            } else {
+                return Optional.empty();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return Optional.empty();
         } finally {
             DbUtils.closeQuietly(conn);
             DbUtils.closeQuietly(ps);

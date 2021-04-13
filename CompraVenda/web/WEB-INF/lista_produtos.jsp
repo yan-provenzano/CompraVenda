@@ -51,7 +51,11 @@
                                     out.print("checked=\"checked\"");
                                 } %>/>
                             </td>
-
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-dark" role="button"  href="/comprador/editar_produto?id=<%=a.getId()%>" >Editar</a>
+                                </div>
+                            </td>  
                         </tr>
                         <% }%>
                     </tbody>
