@@ -41,7 +41,19 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <%  TipoUsuario tipo = user.getTipoUsuario();
-                        if (tipo.equals(TipoUsuario.ADMIN)) {%>            
+                        if (tipo.equals(TipoUsuario.ADMIN)) {%>
+                        <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/lista_administradores">Administradores</a>
+                    </li>
+                    <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/lista_compradores">Compradores</a>
+                    </li>
+                    <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/lista_vendedores">Vendedores</a>
+                    </li>
+                    <li class="nav-item ml-auto justify-content-end">
+                        <a class="nav-link" href="/lista_produtos">Produtos</a>
+                    </li>
                     <%} else if (tipo.equals(TipoUsuario.VENDEDOR)) { %>
                     <li class="nav-item dropdown ml-auto justify-content-end">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
