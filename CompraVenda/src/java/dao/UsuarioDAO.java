@@ -26,22 +26,20 @@ public class UsuarioDAO extends LoginDAO<Usuario> {
         PreparedStatement ps = null;
 
         if (entity.getId() == null) {
-            query = "INSERT INTO " + tableName + " (senha, nome, cpf, tipo) VALUES (?,?,?,?,?, ?)";
+            query = "INSERT INTO " + tableName + " (senha, nome, cpf, tipo) VALUES (?,?,?,?)";
         } else {
             query = "UPDATE " + tableName + " SET senha = ?, nome = ?, cpf = ?, tipo = ? WHERE id = ?";
         }
 
         try {
             ps = conn.prepareStatement(query);
-            ps.setString(2, entity.getSenha());
-
-            
-            ps.setString(3, entity.getNome());
-            ps.setString(4, entity.getCpf());
-            ps.setString(5, entity.getTipo());
+            ps.setString(1, entity.getSenha());            
+            ps.setString(2, entity.getNome());
+            ps.setString(3, entity.getCpf());
+            ps.setString(4, entity.getTipo());
 
             if (entity.getId() != null) {
-                ps.setLong(7, entity.getId());
+                ps.setLong(5, entity.getId());
                 ps.executeUpdate();
             } else {
                 ps.execute();

@@ -1,10 +1,10 @@
 <%-- 
-    Document   : vendas
+    Document   : Administradores
     Created on : 15/03/2021, 18:14:20
-    Author     : Yan
+    Author     : Isaac
 --%>
 
-<%@page import="model.Vendas"%>
+<%@page import="model.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,48 +23,34 @@
     <body>
         <jsp:include page="navbar.jsp" />
 
-        <%--<div class="row">
-            <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtos");
-                for (Produtos a : produtos) {
-            %>
-
-                      <h1>Produto:  <%=a.getNome_Produto()%></h1>
-
-                <% }%> 
-        </div> --%>
         <div class="container" style="min-height:100vh">
             <div class="row">           
                 <table class="table table-striped table-responsive mx-auto w-auto">
                     <thead>
                         <tr>
-                            <th scope="col">Cod. Venda</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">Cod. Cliente</th>
-                            <th scope="col">Cod. Produto</th>
-                            <th scope="col">Cod. Vendedor</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">CPF</th>
+                            <th scope="col">Nome</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% List<Vendas> vendas = (List<Vendas>) request.getAttribute("vendas");
-                            for (Vendas a : vendas) {
+                        <% List<Usuario> usuarios = (List<Usuario>) request.getAttribute("vendedores");
+                            for (Usuario a : usuarios) {
                         %>
                         <tr>
                             <td><%=a.getId()%></td>
-                            <td><%=a.getQuantidade_Venda()%></td>
-                            <td><%=a.getDate()%></td>
-                            <td><%=a.getValor_Venda()%></td>
-                            <td><%=a.getId_Cliente()%></td>
-                            <td><%=a.getId_Produto()%></td>
-                            <td><%=a.getId_Vendedor()%></td>    
-                            <td><div class="btn-group"><a href="/vendedor/editar_venda?id=<%=a.getId()%>" class="btn btn-primary">Editar</button><a href="/vendedor/excluir_venda?id=<%=a.getId()%>" class="btn btn-danger">Excluir</button></div></td>  
+                            <td><%=a.getCpf() %></td>
+                            <td><%=a.getNome() %></td>  
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
             </div>
+            <div class="row d-flex justify-content-center align-content-center">
+                <a class="btn btn-dark" href="/cadastro_vendedores" role="button">Cadastrar Vendedor</a>
+            </div>
         </div>
+        
     <footer class="mt-auto">
         <jsp:include page="footer.jsp" />
     </footer>
