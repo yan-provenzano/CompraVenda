@@ -23,7 +23,7 @@
     <body>
         <jsp:include page="../navbar.jsp" />
         <% Vendas v = (Vendas) request.getAttribute("vendas"); %>
-        
+
         <div class="container" style="min-height:100vh">
             <div class="row">           
                 </br>
@@ -42,6 +42,8 @@
                     </thead>
                     <tbody>
                         <% List<Vendas> vendas = (List<Vendas>) request.getAttribute("vendasDiarias");
+                            int totalProdVendido = 0;
+                            double totalValorVendido = 0;
                             for (Vendas a : vendas) {
                         %>
                         <tr>
@@ -53,8 +55,20 @@
                             <td><%=a.getId_Produto()%></td>
                             <td><%=a.getId_Vendedor()%></td>    
                         </tr>
-                        <% }%>
+                        <% totalProdVendido = totalProdVendido + a.getQuantidade_Venda();
+                            totalValorVendido = totalValorVendido + a.getValor_Venda();%>
+                        <%}%>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total de Produtos Vendidos</th>
+                            <th>Valor Total Vendido</th>
+                        </tr>
+                        <tr>
+                            <td><%=totalProdVendido%></td>
+                            <td>R$ <%=totalValorVendido%></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
