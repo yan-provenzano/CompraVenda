@@ -26,22 +26,20 @@ public class UsuarioDAO extends LoginDAO<Usuario> {
         PreparedStatement ps = null;
 
         if (entity.getId() == null) {
-            query = "INSERT INTO " + tableName + " (senha, nome, cpf, tipo) VALUES (?,?,?,?,?, ?)";
+            query = "INSERT INTO " + tableName + " (senha, nome, cpf, tipo) VALUES (?,?,?,?)";
         } else {
             query = "UPDATE " + tableName + " SET senha = ?, nome = ?, cpf = ?, tipo = ? WHERE id = ?";
         }
 
         try {
             ps = conn.prepareStatement(query);
-            ps.setString(2, entity.getSenha());
-
-            
-            ps.setString(3, entity.getNome());
-            ps.setString(4, entity.getCpf());
-            ps.setString(5, entity.getTipo());
+            ps.setString(1, entity.getSenha());            
+            ps.setString(2, entity.getNome());
+            ps.setString(3, entity.getCpf());
+            ps.setString(4, entity.getTipo());
 
             if (entity.getId() != null) {
-                ps.setLong(7, entity.getId());
+                ps.setLong(5, entity.getId());
                 ps.executeUpdate();
             } else {
                 ps.execute();
@@ -218,4 +216,37 @@ public class UsuarioDAO extends LoginDAO<Usuario> {
      
      }
 
+     public List<Usuario> findAllAdministradores() {
+      String query = "SELECT * FROM " + tableName + " WHERE tipo = 0";
+        Connection conn = DatabaseConnection.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Usuario> administradores = new ArrayList<>();
+
+        try {
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            Usuario entity;
+
+            while (rs.next()) {
+                entity = new Usuario();
+                entity.setId(rs.getLong("id"));
+                entity.setNome(rs.getString("nome"));
+                entity.setSenha(rs.getString("senha"));
+                entity.setCpf(rs.getString("cpf"));
+                entity.setTipo(rs.getString("tipo"));
+
+                administradores.add(entity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+
+        return administradores;
+     
+     }
 }
