@@ -40,7 +40,8 @@
                         <tr>
                             <td><%=a.getId()%></td>
                             <td><%=a.getCpf() %></td>
-                            <td><%=a.getNome() %></td>  
+                            <td><%=a.getNome() %></td>
+                            <td><div class="btn-group"><a href="/administrador/excluir_administrador?id=<%=a.getId()%>" class="btn btn-danger">Excluir</a></div></td> 
                         </tr>
                         <% }%>
                     </tbody>
