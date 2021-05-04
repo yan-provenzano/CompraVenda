@@ -23,22 +23,10 @@
     <body>
         <jsp:include page="navbar.jsp" />
 
-        <%--<div class="row">
-            <% List<Produtos> produtos = (List<Produtos>) request.getAttribute("produtos");
-                for (Produtos a : produtos) {
-            %>
-
-                      <h1>Produto:  <%=a.getNome_Produto()%></h1>
-
-                <% }%> 
-        </div> --%>
         <div class="container" style="min-height:100vh">
             <div class="row">
        
-                <div class="col d-flex justify-content-center"><div class="card" style="display: inline-block;">
-         </br>
-                </br>
-                </br>
+                <div class="col mt-4 d-flex justify-content-center"><div class="card" style="display: inline-block;">
                 </br>
                         <div class="container">
                             <form class="needs-validation"  id="form-register" method="POST" action="/relatorio_vendas">
@@ -47,7 +35,7 @@
                                 <div class="form-group">
                                     <div class="form-row">
 
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-12">
                                             <label for="saleDate">Data de Venda:</label>
                                             <input type="date"  required = "required" name="data_venda" class="form-control">
                                         </div>
@@ -55,8 +43,8 @@
                                 </div>
 
                                 <!--Botão-->
-                                <div class="form-group">
-                                <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#exampleModal" type="submit">Cadastrar</button>
+                                <div class="form-group mx-auto w-auto col-md-4">
+                                <button class="btn btn-dark btn-block" data-toggle="modal" data-target="#exampleModal" type="submit">GERAR RELATÓRIO</button>
                                 </div>
 
                             </form> <!-- /form -->
@@ -78,15 +66,10 @@
                 </div>-->
             </div>
             <div class="row">           
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
-                </br>
+     
 
                 <table class="table table-striped table-responsive mx-auto w-auto">
-                    <h1 class="mx-auto w-auto">RELATÓRIO DE VENDAS TOTAIS</h1>
+                    <h1 class="mx-auto mt-4 w-auto">RELATÓRIO DE VENDAS TOTAIS</h1>
                     <thead>
                         <tr>
                             <th scope="col">Cod. Venda</th>

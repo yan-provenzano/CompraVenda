@@ -15,7 +15,7 @@
 
         <jsp:include page="navbar.jsp" />
 
-        <div class="container">
+        <div class="container" style="min-height:100vh">
             <br>
             <div class="col d-flex justify-content-center"><div class="card" style="display: inline-block;">
 
@@ -25,17 +25,17 @@
                             <!--Nome-->
                             <div class="form-group">
                                 <label for="firstName" class="col control-label">CPF:</label>
-                                <input type="text" required="required" name="cpf" minlength="3" maxlength="11" placeholder="XXX.XXX.XXX-XX" class="form-control" autofocus>
+                                <input type="text" required="required" name="cpf" minlength="3" maxlength="14" placeholder="XXX.XXX.XXX-XX" class="form-control" autofocus>
                             </div>
                             <!--CPF-->
                             <div class="form-group">
                                 <label for="cpf">Nome:</label>
-                                <input type="text" required="required" minlength="11" maxlength="14" name="nome" class="form-control" autofocus>
+                                <input type="text" required="required" minlength="11" maxlength="50" name="nome" class="form-control" autofocus>
                             </div>
                             <!--Bloco de endereço-->
                             <div class="form-group">
                                 <label for="inputAddress">Senha:</label>
-                                <input type="text" required="required" class="form-control" minlength="3" maxlength="50" name="senha" autofocus>
+                                <input type="text" required="required" class="form-control" minlength="3" maxlength="10" name="senha" autofocus>
                             </div>
                            
                             <!--Botão-->
