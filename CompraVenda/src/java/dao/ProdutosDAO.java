@@ -43,9 +43,9 @@ public class ProdutosDAO<T extends Produtos> extends DAO<T> {
                 Produtos p = findByProdutoId(entity.getId().intValue());
                 ps.setString(1, p.getNome_Produto());
                 ps.setString(2, p.getDescricao());
-                ps.setDouble(3, p.getPreco_Compra());
+                ps.setDouble(3, entity.getPreco_Compra());
                 ps.setDouble(4, p.getPreco_Venda());
-                ps.setInt(5, p.getQuantidade_Disponivel());
+                ps.setInt(5, entity.getQuantidade_Disponivel());
                 ps.setInt(7, p.getId_Categoria());                
                 ps.setLong(8, entity.getId());
                 ps.executeUpdate();

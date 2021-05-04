@@ -40,7 +40,7 @@ public class ExcluirVendedorController extends HttpServlet {
 
            if (user.getTipoUsuario().equals(TipoUsuario.ADMIN)) {
             //se for adm
-            resp.sendRedirect("/lista_vendedor");
+            resp.sendRedirect("/lista_vendedores");
         }
        
     }
