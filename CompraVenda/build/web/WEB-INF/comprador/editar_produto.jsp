@@ -23,7 +23,7 @@
 
         <jsp:include page="../navbar.jsp" />
 
-        <div class="container">
+        <div class="container" style="min-height:100vh">
 
             <% Produtos c = (Produtos) request.getAttribute("produtos"); %>
 
@@ -81,7 +81,9 @@
             </form>
         </div>
 
-        <jsp:include page="../footer.jsp" />
+        <footer class="mt-auto">
+            <jsp:include page="../footer.jsp" />
+        </footer>
     </body>
 
 </html>

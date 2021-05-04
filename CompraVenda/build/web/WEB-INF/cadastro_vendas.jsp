@@ -26,7 +26,7 @@
 
         <jsp:include page="navbar.jsp" />
 
-        <div class="container">
+    <div class="container" style="min-height:100vh">
             <br>
             <div class="col d-flex justify-content-center"><div class="card" style="display: inline-block;">
 

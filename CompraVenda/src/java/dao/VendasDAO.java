@@ -12,7 +12,7 @@ import org.apache.commons.dbutils.DbUtils;
 import dao.ProdutosDAO;
 import static java.lang.System.out;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -155,6 +155,43 @@ public class VendasDAO<T extends Vendas> extends DAO<T> {
         return list;
     }
 
+    public List<Vendas> listByDate(java.util.Date data_venda) {
+        String query = "SELECT * FROM " + tableName + " WHERE data_venda = ?";
+         Connection conn = DatabaseConnection.getConn();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Vendas> list = new ArrayList<>();
+
+        try {
+            ps = conn.prepareStatement(query);
+            
+            ps.setDate(1, new java.sql.Date(data_venda.getTime()));
+            rs = ps.executeQuery();
+            Vendas entity;
+
+            while (rs.next()) {
+                entity = new Vendas();
+
+                entity.setId(rs.getLong("id"));
+                entity.setQuantidade_Venda(rs.getInt("quantidade_venda"));
+                entity.setDate(rs.getDate("data_venda"));
+                entity.setValor_Venda(rs.getDouble("valor_venda"));
+                entity.setId_Cliente(rs.getInt("id_cliente"));
+                entity.setId_Produto(rs.getInt("id_produto"));
+                entity.setId_Vendedor(rs.getInt("id_vendedor"));
+                list.add(entity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(ps);
+            DbUtils.closeQuietly(rs);
+        }
+
+        return list;
+    }
+    
     @Override
     public boolean delete(Long id) {
         String query = "DELETE FROM " + tableName + " WHERE id = ?";

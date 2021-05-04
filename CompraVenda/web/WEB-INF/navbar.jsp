@@ -42,6 +42,15 @@
                 <ul class="navbar-nav ml-auto">
                     <%  TipoUsuario tipo = user.getTipoUsuario();
                         if (tipo.equals(TipoUsuario.ADMIN)) {%>            
+                    <li class="nav-item dropdown ml-auto justify-content-end">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Relatórios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/relatorio_estoque">Relatório de Estoque</a>
+                            <a class="dropdown-item" href="/relatorio_vendas">Relatório de Vendas</a>
+                        </div>
+                    </li>
                     <%} else if (tipo.equals(TipoUsuario.VENDEDOR)) { %>
                     <li class="nav-item dropdown ml-auto justify-content-end">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,7 +84,7 @@
                         <a class="nav-link" href="/lista_fornecedores">Fornecedores</a>
                     </li>
                     <%} %>
-                    
+
                     <li class="nav-item ml-auto justify-content-end">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>

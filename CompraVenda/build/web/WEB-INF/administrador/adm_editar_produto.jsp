@@ -1,5 +1,5 @@
 <%-- 
-    Document   : editar_produto
+    Document   : editar_produto_adm
     Created on : 15/03/2021, 21:42:44
     Author     : Isaac
 --%>
@@ -27,7 +27,7 @@
 
             <% Produtos c = (Produtos) request.getAttribute("produtos"); %>
 
-            <form class="needs-validation" id="edicao-post-form" method="POST" action="/comprador/editar_produto">
+            <form class="needs-validation" id="edicao-post-form" method="POST" action="/administrador/adm_editar_produto">
 
                 <% if (c != null) {%>
                 <input type="hidden" name="id" value="<%=c.getId()%>">
@@ -81,9 +81,11 @@
             </form>
         </div>
 
-        <footer class="mt-auto">
-            <jsp:include page="../footer.jsp" />
-        </footer>
+
+                <footer class="mt-auto">
+                    <jsp:include page="../footer.jsp" />
+                </footer>
     </body>
 
 </html>
+
